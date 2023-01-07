@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import { usePatternFormat } from "react-number-format";
 
 const server = express();
 server.use(express.json());
@@ -40,6 +41,16 @@ server.post("/tweets", (req, res) => {
   tweets.push(newTweet);
   console.log(tweets);
   return res.send("OK");
+});
+
+server.get("/tweets", (req, res) => {
+  const lastTenTweets = tweets.slice(-10);
+  const tweetsWithAvatar = lastTenTweets.map(tweet => {
+    const user = users.find(user => user.username === tweet.username);
+    return { ...tweet, avatar: user.avatar };
+  });
+
+  return res.send(tweetsWithAvatar);
 });
 
 const PORT = 5000;
