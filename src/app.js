@@ -1,6 +1,5 @@
 import express from "express";
 import cors from "cors";
-import { usePatternFormat } from "react-number-format";
 
 const server = express();
 server.use(express.json());
