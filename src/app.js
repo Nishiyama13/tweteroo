@@ -14,10 +14,18 @@ const users = [
   },
 ];
 
+const tweets = [
+  {
+    username: "bobesponja",
+    tweet: "eu amo o hub",
+  },
+];
+
 server.post("/sign-up", (req, res) => {
   const newUser = req.body;
   users.push(newUser);
-  res.send(users);
+  console.log(users);
+  res.send("OK");
 });
 
 const PORT = 5023;
